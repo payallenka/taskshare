@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a202c;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #4e73df;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #4e73df;
+            outline: none;
+        }
+
+        .button {
+            padding: 12px 30px;
+            background-color: #4e73df;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2e59d9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #63b3ed;
+            text-decoration: none;
+            border-bottom: 2px solid #63b3ed;
+        }
+
+        .back-link:hover {
+            color: #2b6cb0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Render form fields -->
+            <button type="submit" class="button">Login</button>
+        </form>
+
+    </div>
+
+</body>
+</html>

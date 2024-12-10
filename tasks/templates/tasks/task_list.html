@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text color */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(30, 41, 59, 0.8); /* Semi-transparent dark background */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #4e73df;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .task-list li {
+            padding: 15px;
+            background-color: #2d3748; /* Slightly darker container for tasks */
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-list a {
+            color: #4e73df;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .task-list a:hover {
+            text-decoration: underline;
+        }
+
+        .task-details {
+            display: none;
+            background-color: #333c47;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .edit-btn, .delete-btn {
+            color: #63b3ed;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            color: #e53e3e;
+        }
+
+        .create-task-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4e73df;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-task-btn:hover {
+            background-color: #2e59d9;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Task List</h1>
+
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+
+        <a href="{% url 'tasks:task_create' %}" class="create-task-btn">Create New Task</a>
+
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li>
+                <a href="javascript:void(0)" onclick="toggleDetails('{{ task.id }}')">
+                    {{ task.task_name }}
+                </a>
+
+                <div id="task-details-{{ task.id }}" class="task-details">
+                    <p><strong>Description:</strong> {{ task.description }}</p>
+                    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+                    <p><strong>Status:</strong> {{ task.status }}</p>
+
+                    <a href="{% url 'tasks:task_edit' task.id %}" class="edit-btn">Edit</a>
+
+                    <form action="{% url 'tasks:task_delete' task.id %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        function toggleDetails(taskId) {
+            const details = document.getElementById(`task-details-${taskId}`);
+            details.style.display = details.style.display === "none" || details.style.display === "" ? "block" : "none";
+        }
+    </script>
+
+</body>
+</html>

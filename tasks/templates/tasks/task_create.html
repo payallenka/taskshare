@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Lighter text for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #1e1e1e; /* Dark background for container */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #4e73df; /* Blue for headers */
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: #e0e0e0; /* Lighter label text */
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            font-size: 14px;
+            border: 1px solid #555; /* Slightly lighter border */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #333; /* Darker input fields */
+            color: #e0e0e0; /* Light text inside input */
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #4e73df;
+            outline: none;
+        }
+
+        .button {
+            padding: 12px 30px;
+            background-color: #4e73df; /* Blue button */
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2e59d9; /* Darker blue on hover */
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #4e73df;
+            text-decoration: none;
+            border-bottom: 2px solid #4e73df;
+        }
+
+        .back-link:hover {
+            color: #2e59d9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Create a New Task</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.as_p }} <!-- Renders the form fields -->
+            </div>
+
+            <button type="submit" class="button">
+                Create Task
+            </button>
+        </form>
+
+        <a href="{% url 'tasks:task_list' %}" class="back-link">Back to Task List</a>
+    </div>
+
+</body>
+</html>

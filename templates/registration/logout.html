@@ -1,0 +1,40 @@
+<form action="{% url 'logout' %}" method="POST" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="logout-btn">Confirm Logout</button>
+</form>
+
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #1a202c; /* Dark background */
+        color: #e2e8f0; /* Light text color */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full height to center the button vertically */
+    }
+
+    .logout-container {
+        text-align: center; /* Centers the button horizontally */
+        width: 100%;
+    }
+
+    .logout-btn {
+        padding: 12px 30px;
+        background-color: #dc3545; /* Red background for logout */
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+</style>

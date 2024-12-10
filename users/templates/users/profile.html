@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a202c;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #4e73df;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #63b3ed;
+            font-size: 16px;
+            text-decoration: none;
+            border-bottom: 2px solid #63b3ed;
+        }
+
+        a:hover {
+            color: #2b6cb0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Profile Information</h1>
+
+        <h2>Welcome, {{ user.username }}</h2>
+
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Organization:</strong> {{ user.organization }}</p>
+
+        <p><a href="{% url 'tasks:task_list' %}">View Your Tasks</a></p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+    </div>
+
+</body>
+</html>
