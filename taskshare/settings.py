@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-n(+w5!pubfa4sx51q4b1b*@7m_yav@%$-twx=c0dg6d_pg73ua
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','0.0.0.0', 'taskshare.herokuapp.com']
 
 
 
@@ -38,11 +40,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat',
     'users',
     'tasks',
     'rest_framework',
+    'channels'
 ]
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+STATIC_URL = '/static/'
+
+ASGI_APPLICATION = 'taskshare.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,15 +104,9 @@ WSGI_APPLICATION = 'taskshare.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'taskshare_db',          
-        'USER': 'root',                        
-        'PASSWORD': 'password',                
-        'HOST': '172.17.0.2',                   
-        'PORT': '3306',                        
-    }
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 }
+
 
 
 

@@ -4,7 +4,7 @@ from .models import Task
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['task_name', 'description', 'assigned_to', 'deadline', 'status']
+        fields = ['task_name', 'description', 'assigned_to', 'deadline', 'status','report']
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)  # Get the user from the view

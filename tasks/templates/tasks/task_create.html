@@ -93,6 +93,12 @@
             <div class="form-group">
                 {{ form.as_p }} <!-- Renders the form fields -->
             </div>
+            
+            <!-- Adding custom input for deadline with datetime picker -->
+            <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="datetime-local" id="deadline" name="deadline" required>
+            </div>
 
             <button type="submit" class="button">
                 Create Task

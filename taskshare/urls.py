@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html',http_method_names=['get', 'post'], 
                                                   extra_context={'next_page': '/'}), 
                                                   name='logout'),
+     
 ]
