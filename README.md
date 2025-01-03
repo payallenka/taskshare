@@ -8,6 +8,12 @@ This project is designed to manage users and tasks in a web application. It cons
 
 The system allows users to register, log in, manage their profiles, and create, manage, and track tasks.
 
+## Steps To Use It
+1. Clone the repository.
+2. Create a virtual environment and install the packages from the requiremnets.txt with the command as (pip install -r requirements.txt)
+3. Run the program by activating the server (the urls/APIs can be referenced from the urls.py file of the app's and project's urls.py file.
+
+
 ## Workflow Overview
 
 The workflow is divided into two main parts:
